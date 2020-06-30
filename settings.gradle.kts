@@ -1,0 +1,2 @@
+rootProject.name = "npl-textrazor"
+

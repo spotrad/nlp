@@ -42,7 +42,8 @@ class Application {
     private fun runKeyPhraseDetection(text: String): KeyPhraseResult =
         client.detectPhrases(text)
             .attempt()
-            .unsafeRunSync().fold(
+            .unsafeRunSync()
+            .fold(
                 {KeyPhraseResult(Status.FAILURE, None, Some(it))},
                 {KeyPhraseResult(Status.SUCCESS, Some(it.map { phrase -> phrase.toString() }), None) }
             )

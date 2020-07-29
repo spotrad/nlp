@@ -1,15 +1,18 @@
 package npl
 
-import arrow.core.Either
+import arrow.core.None
+import arrow.core.Some
+import arrow.core.getOrElse
 
 import com.amazonaws.auth.AWSCredentialsProvider
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain
-import com.amazonaws.services.comprehend.model.KeyPhrase
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.options.prompt
 import comprehend.Client
 import mu.KotlinLogging
+import npl.domain.KeyPhraseResult
+import npl.domain.Status
 
 fun main(args: Array<String>) = Runner().main(args)
 
@@ -28,17 +31,21 @@ class Application {
 
     fun run(text: String) {
         logger.info("Starting Comprehend application...")
-        runKeyPhraseDetection(text).fold(
-            {logger.error("There has been an error while processing text.", it)},
-            {logger.info("Finished processing text. Results: ${it.joinToString()}")}
-        )
+        val result = runKeyPhraseDetection(text)
+        when (result.status) {
+            Status.SUCCESS -> logger.info("Key phrase processing results: ${result.keyPhrases.fold({""}, {it.joinToString(", ")})}")
+            Status.FAILURE -> logger.error("There has been an error fetching key phrases from text. Error: ${result.exception.getOrElse { "" }}")
+        }
         logger.info("Comprehend application finished.")
     }
 
-    private fun runKeyPhraseDetection(text: String): Either<Throwable, Iterable<KeyPhrase>> =
+    private fun runKeyPhraseDetection(text: String): KeyPhraseResult =
         client.detectPhrases(text)
             .attempt()
-            .unsafeRunSync()
+            .unsafeRunSync().fold(
+                {KeyPhraseResult(Status.FAILURE, None, Some(it))},
+                {KeyPhraseResult(Status.SUCCESS, Some(it.map { phrase -> phrase.toString() }), None) }
+            )
 
     private fun buildAwsCredentials(): AWSCredentialsProvider {
         return DefaultAWSCredentialsProviderChain.getInstance()

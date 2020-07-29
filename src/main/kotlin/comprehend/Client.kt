@@ -5,10 +5,9 @@ import arrow.fx.extensions.fx
 import com.amazonaws.auth.AWSCredentialsProvider
 import com.amazonaws.services.comprehend.AmazonComprehendClientBuilder
 import com.amazonaws.services.comprehend.model.DetectKeyPhrasesRequest
-import com.amazonaws.services.comprehend.model.DetectKeyPhrasesResult
 import com.amazonaws.services.comprehend.model.KeyPhrase
 
-class Client(private val credentials: AWSCredentialsProvider) {
+class Client(credentials: AWSCredentialsProvider) {
 
     private val comprehendClient = AmazonComprehendClientBuilder
         .standard()

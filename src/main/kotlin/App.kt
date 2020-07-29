@@ -33,7 +33,7 @@ class Application {
         logger.info("Starting Comprehend application...")
         val result = runKeyPhraseDetection(text)
         when (result.status) {
-            Status.SUCCESS -> logger.info("Key phrase processing results: ${result.keyPhrases.fold({""}, {it.joinToString(", ")})}")
+            Status.SUCCESS -> logger.info("Key phrase processing results: ${result.keyPhrases.fold({""}, {it.joinToString(",\n")})}")
             Status.FAILURE -> logger.error("There has been an error fetching key phrases from text. Error: ${result.exception.getOrElse { "" }}")
         }
         logger.info("Comprehend application finished.")

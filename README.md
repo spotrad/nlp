@@ -4,7 +4,7 @@ This project is intended to process text via a natural language processor.
 Currently, this application only uses AWS Comprehend to do the processing.
 
 ## Example Use
-Text input: 
+Text input (since this is a CLI app, ensure that the text does not have new lines): 
 ```
 I cannot say enough good things about Spot Hero. Not only is the app easy to use, it takes the worry of the cost and accessibility of parking away. It makes the process so much smoother and more pleasant. I live outside NYC and have used it many times there but I have used it in other cities as well.
 

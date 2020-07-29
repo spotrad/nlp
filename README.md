@@ -8,5 +8,5 @@ Currently, this application only uses AWS Comprehend to do the processing.
 2. Java 13
 
 ## Building and Running
-1. make build-jar
-2. make run-key-phrase
+1. `make build-jar`
+2. `make run-key-phrase`

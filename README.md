@@ -3,8 +3,9 @@
 This project is intended to process text via a natural language processor. 
 Currently, this application only uses AWS Comprehend to do the processing.
 
-## Example Use
+## Example Text
 Text input (since this is a CLI app, ensure that the text does not have new lines): 
+
 ```
 I cannot say enough good things about Spot Hero. Not only is the app easy to use, it takes the worry of the cost and accessibility of parking away. It makes the process so much smoother and more pleasant. I live outside NYC and have used it many times there but I have used it in other cities as well.
 
@@ -12,7 +13,8 @@ Recently, the garage I had arranged for was inaccessible due to street closures.
 
 When I finally had a chance to call, they refunded my original payment and when I provided a receipt, gave me a credit for the additional cost of the parking garage that I wound up using. Hard to find such good customer service these days and it has made me a loyal customer who will recommend them to anyone who will listen.
 ```
-Output:
+
+Key Phrase Output:
 ```
 {Score: 0.99996954,Text: enough good things,BeginOffset: 14,EndOffset: 32}, 
 {Score: 0.9999964,Text: Spot Hero,BeginOffset: 39,EndOffset: 48}, 
@@ -44,10 +46,26 @@ Output:
 {Score: 0.9999952,Text: these days,BeginOffset: 844,EndOffset: 854}, 
 {Score: 0.9994914,Text: a loyal customer,BeginOffset: 874,EndOffset: 890}
 ```
+
+Sentiment Output:
+```
+{
+    Sentiment: POSITIVE,
+    SentimentScore: {
+        Positive: 0.9969283,
+        Negative: 0.0024464617,
+        Neutral: 6.236479E-4,
+        Mixed: 1.6183192E-6
+    }
+}
+
+```
+
 ## Requirements
 1. Ensure your aws credentials are setup in your user root at [~/.aws/credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
 2. Java 13
 
 ## Building and Running
 1. `make build-jar`
-2. `make run-key-phrase`
+2. Key Phrase Detection: `make run-key-phrase`
+3. Sentiment Detection: `make run-sentiment`

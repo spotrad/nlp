@@ -1,4 +1,4 @@
-# NPL
+# NLP
 
 This project is intended to process text via a natural language processor. 
 Currently, this application only uses AWS Comprehend to do the processing.

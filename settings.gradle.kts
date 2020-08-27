@@ -1,2 +1,2 @@
-rootProject.name = "npl-textrazor"
+rootProject.name = "nlp"
 

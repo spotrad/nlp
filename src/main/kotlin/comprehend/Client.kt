@@ -9,7 +9,7 @@ import com.amazonaws.services.comprehend.model.DetectSentimentRequest
 import com.amazonaws.services.comprehend.model.DetectSentimentResult
 import com.amazonaws.services.comprehend.model.KeyPhrase
 import com.amazonaws.services.comprehend.model.SentimentScore
-import npl.domain.SentimentResult
+import nlp.domain.SentimentResult
 
 class Client(credentials: AWSCredentialsProvider) {
 

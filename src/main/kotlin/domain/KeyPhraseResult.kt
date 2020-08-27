@@ -1,4 +1,4 @@
-package npl.domain
+package nlp.domain
 
 import arrow.core.Option
 

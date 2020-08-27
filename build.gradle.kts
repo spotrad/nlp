@@ -6,7 +6,7 @@ plugins {
     id("com.github.johnrengelman.shadow") version "6.0.0"
 }
 
-group = "com.implauzable.npl"
+group = "com.implauzable.nlp"
 version = "local"
 
 repositories {
@@ -49,7 +49,7 @@ configure<JavaPluginConvention> {
 
 tasks.withType<ShadowJar> {
     manifest {
-        attributes["Main-Class"] = "npl.AppKt"
+        attributes["Main-Class"] = "nlp.AppKt"
     }
     isZip64 = true
 }

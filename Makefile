@@ -1,4 +1,4 @@
-JAR_NAME = "npl-textrazor-local-all.jar"
+JAR_NAME = "nlp-local-all.jar"
 
 build-jar:
 	./gradlew clean shadowJar
